@@ -11,7 +11,7 @@ import SwiftUI
 struct PetTranslatorApp: App {
     var body: some Scene {
         WindowGroup {
-            TranslatorView()
+            MainPageView(selectedTab: .translator)
         }
     }
 }
