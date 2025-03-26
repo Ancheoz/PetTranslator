@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TranslatorView: View {
     
+    var speechRecognizer = SpeechRecognizer()
+    
     enum Animals {
         case cat
         case dog
@@ -17,6 +19,7 @@ struct TranslatorView: View {
     @State var sourceLanguage = "HUMAN"
     @State var sourceLanguage2 = "PET"
     @State var selectedAnimal: Animals = .cat
+    @State private var isRecording = false
     var body: some View {
         VStack {
             // TRANSLATOR TEXT
@@ -60,16 +63,26 @@ struct TranslatorView: View {
                 // MICROPHONE VIEW
                 VStack {
                     Button {
-                        // activate voice recording
+                        if isRecording == false {
+                            speechRecognizer.startRecognition()
+                        } else {
+                            speechRecognizer.stopRecognition()
+                        }
+                        DispatchQueue.main.async {
+                            isRecording.toggle()
+                        }
                     } label: {
                         VStack {
                             Image("microphone")
                                 .padding(.top, 44)
+                                .scaleEffect(isRecording ? 1.2 : 1.0)
+                                .foregroundColor(isRecording ? .red : .black)
                             Text("Start speak")
                                 .font(.custom("KonkhmerSleokchher-Regular", size: 16))
                                 .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
                                 .padding(.bottom, 16)
                         }
+                        
                         .padding(.horizontal, 43)
                         .background {
                             Color.white
@@ -80,8 +93,16 @@ struct TranslatorView: View {
                                 .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 4)
                         }
                         
+                        
                     }
+                    .opacity(isRecording ? 0.5 : 1.0)
                     
+                }
+                .onAppear {
+                    speechRecognizer.onStop = { finalText in
+                        print("Final text: \(finalText)")
+                        
+                    }
                 }
                 
                 // PETS CHOOSING VIEW
@@ -138,4 +159,8 @@ struct TranslatorView: View {
             Spacer()
         }
     }
+}
+
+#Preview {
+    TranslatorView()
 }

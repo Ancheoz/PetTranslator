@@ -2,10 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow access to your mircophone to use the app’s features</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict/>
 	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Allow access to your mircophone to use the app’s features</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>KonkhmerSleokchherRegular.ttf</string>
