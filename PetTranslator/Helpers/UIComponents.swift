@@ -31,14 +31,14 @@ struct ButtonClickView: View {
             }
             .padding(.horizontal, 16)
             
-                .font(.custom("KonkhmerSleokchher-Regular", size: 16))
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background {
-                    Color(red: 214/255, green: 220/255, blue: 255/255)
-                        .cornerRadius(20)
-                }
-                .padding(.horizontal, 16)
+            .font(.custom("KonkhmerSleokchher-Regular", size: 16))
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 16)
+            .background {
+                Color(red: 214/255, green: 220/255, blue: 255/255)
+                    .cornerRadius(20)
+            }
+            .padding(.horizontal, 16)
         }
     }
 }

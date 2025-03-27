@@ -20,10 +20,10 @@ struct MainPageView: View {
     
     var body: some View {
         NavigationStack {
-        ZStack(alignment: .bottom) {
-            // CHOOSING WINDOW TO OPEN
-            
-            
+            ZStack(alignment: .bottom) {
+                // CHOOSING WINDOW TO OPEN
+                
+                
                 if selectedTab == .translator {
                     TranslatorView()
                         .padding(.top, 12)
@@ -80,17 +80,12 @@ struct MainPageView: View {
                 .background(Color.white)
                 .cornerRadius(16)
                 
+            }
+            .background {
+                AppBackground()
+                    .ignoresSafeArea()
+            }
         }
-        .background {
-            AppBackground()
-                .ignoresSafeArea()
-        }
-    
-    
-    }
-        
-        
-        
     }
 }
 

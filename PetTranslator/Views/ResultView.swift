@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct ResultView: View {
     @Environment(\.dismiss) var dismiss
     var speechRecognizer = SpeechRecognizer()
@@ -17,7 +15,6 @@ struct ResultView: View {
     var catPhrases = ["Hug me please", "I want to sleep", "I want eat", "Open the door!", "I'm the boss!", "Pet me now", "I own you!", "I need space!"]
     var dogPhrases = ["Woof woof", "I want to go outside", "I want to play fetch", "You're my best!", "I love you!", "Throw the ball", "Stay with me!"]
     @Binding var text: String
-    
     
     var body: some View {
         ZStack {
@@ -34,7 +31,6 @@ struct ResultView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 48, height: 48)
                         }
-
                         
                         Spacer()
                         HStack {
@@ -57,16 +53,12 @@ struct ResultView: View {
                     
                     VStack {
                         VStack {
-                            HStack {
-                                
-                            }
-                            
                             VStack {
                                 Text("Your text: ")
                                     .font(.custom("KonkhmerSleokchher-Regular", size: 16))
                                 Text(text)
                                     .font(.custom("KonkhmerSleokchher-Regular", size: 32))
-                                    
+                                
                             }
                             .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
                             .padding(.horizontal, 20)
@@ -99,7 +91,6 @@ struct ResultView: View {
                                     Image("dog")
                                     Spacer()
                                 }
-                                
                             }
                         }
                         .padding(.top, 24)
@@ -129,11 +120,11 @@ struct ResultView: View {
                                 Text("Your cat says:")
                                     .font(.custom("KonkhmerSleokchher-Regular", size: 8))
                                     .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
-                                    
+                                
                                 Text(catPhrases.randomElement() ?? "Meow meow...")
                                     .font(.custom("KonkhmerSleokchher-Regular", size: 32))
                                     .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
-                                    
+                                
                             }
                             Image("cat")
                                 .padding(.top, 48)
@@ -142,41 +133,41 @@ struct ResultView: View {
                     }
                     
                     .padding(.top, 12)
-                            } else {
+                } else {
+                    VStack {
+                        HStack {
+                            Button {
+                                dismiss()
+                            } label: {
                                 VStack {
-                                    HStack {
-                                        Button {
-                                            dismiss()
-                                        } label: {
-                                            VStack {
-                                                Image("close")
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .frame(width: 48, height: 48)
-                                            }
-                                            .padding(.horizontal, 20)
-                                        }
-                                        Spacer()
-                                    }
-                                    
-                                    VStack {
-                                        VStack {
-                                            Text("Your dog says:")
-                                                .font(.custom("KonkhmerSleokchher-Regular", size: 8))
-                                                .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
-                                                
-                                            Text(dogPhrases.randomElement() ?? "Woof woof")
-                                                .font(.custom("KonkhmerSleokchher-Regular", size: 32))
-                                                .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
-                                        }
-                                        Image("dog")
-                                            .padding(.top, 48)
-                                    }
-                                    Spacer()
+                                    Image("close")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 48, height: 48)
                                 }
-                                
-                                .padding(.top, 12)
+                                .padding(.horizontal, 20)
                             }
+                            Spacer()
+                        }
+                        
+                        VStack {
+                            VStack {
+                                Text("Your dog says:")
+                                    .font(.custom("KonkhmerSleokchher-Regular", size: 8))
+                                    .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
+                                
+                                Text(dogPhrases.randomElement() ?? "Woof woof")
+                                    .font(.custom("KonkhmerSleokchher-Regular", size: 32))
+                                    .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
+                            }
+                            Image("dog")
+                                .padding(.top, 48)
+                        }
+                        Spacer()
+                    }
+                    
+                    .padding(.top, 12)
+                }
             }
         }
         .navigationBarBackButtonHidden(true)

@@ -49,14 +49,14 @@ struct ClickView: View {
                         showContactSheet = true
                     })
                     .confirmationDialog("Contact Us", isPresented: $showContactSheet, titleVisibility: .visible) {
-                                Button("Call 📞") {
-                                    callSupport()
-                                }
-                                Button("Email ✉️") {
-                                    sendEmail()
-                                }
-                                Button("Cancel", role: .cancel) {}
-                            }
+                        Button("Call 📞") {
+                            callSupport()
+                        }
+                        Button("Email ✉️") {
+                            sendEmail()
+                        }
+                        Button("Cancel", role: .cancel) {}
+                    }
                     
                     // BUTTON RESTORE PURCHASES
                     ButtonClickView(name: "Restore Purchases", action: {
@@ -79,30 +79,31 @@ struct ClickView: View {
                 
             }
             .alert("This feature will be provided in the future", isPresented: $showAlert) {
-                        Button("OK", role: .cancel) { }
-                    }
+                Button("OK", role: .cancel) { }
+            }
         }
         
     }
     private func shareApp() {
-            let urlString = "https://apps.apple.com/app/id76767667"
-            if let url = URL(string: urlString) {
-                UIApplication.shared.open(url)
-            }
+        let urlString = "https://apps.apple.com/app/id76767667"
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
         }
+    }
     
     private func callSupport() {
-            if let url = URL(string: "tel://+00000000000") {
-                UIApplication.shared.open(url)
-            }
+        if let url = URL(string: "tel://+00000000000") {
+            UIApplication.shared.open(url)
         }
+    }
+    
     private func sendEmail() {
-            if let url = URL(string: "mailto:petSupportApp@pets.com") {
-                UIApplication.shared.open(url)
-            }
+        if let url = URL(string: "mailto:petSupportApp@pets.com") {
+            UIApplication.shared.open(url)
         }
-        
-        
+    }
+    
+    
 }
 
 
