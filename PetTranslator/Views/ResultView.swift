@@ -69,6 +69,7 @@ struct ResultView: View {
                                     
                             }
                             .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
+                            .padding(.horizontal, 20)
                             
                             Text(speechRecognizer.recognizedText)
                                 .font(.custom("KonkhmerSleokchher-Regular", size: 32))
@@ -85,6 +86,7 @@ struct ResultView: View {
                                             .font(.custom("KonkhmerSleokchher-Regular", size: 32))
                                             .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
                                         Image("cat")
+                                        Spacer()
                                     } else if animal == .dog {
                                         Image("dog")
                                     }
@@ -95,6 +97,7 @@ struct ResultView: View {
                                         .font(.custom("KonkhmerSleokchher-Regular", size: 32))
                                         .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
                                     Image("dog")
+                                    Spacer()
                                 }
                                 
                             }

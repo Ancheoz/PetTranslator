@@ -47,6 +47,7 @@ struct TranslatorView: View {
                         Button {
                             swap(&sourceLanguage, &sourceLanguage2)
                             humanToPet.toggle()
+                            print(sourceLanguage, sourceLanguage2)
                         } label: {
                             Image("arrow-swap-horizontal")
                         }
@@ -115,6 +116,7 @@ struct TranslatorView: View {
                     VStack(spacing: 12) {
                         Button {
                             selectedAnimal = .cat
+                            print(selectedAnimal)
                         } label: {
                             ZStack {
                                 Color(red: 209/255, green: 231/255, blue: 252/255)
@@ -129,6 +131,7 @@ struct TranslatorView: View {
                         }
                         Button {
                             selectedAnimal = .dog
+                            print(selectedAnimal)
                         } label: {
                             ZStack {
                                 Color(red: 236/255, green: 251/255, blue: 199/255)
