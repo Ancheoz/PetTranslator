@@ -18,3 +18,27 @@ struct AppBackground: View {
     }
 }
 
+struct ButtonClickView: View {
+    let name: String
+    let action: () -> Void
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                Text(name)
+                Spacer()
+                Image("arrow-right")
+                    .frame(width: 24, height: 24)
+            }
+            .padding(.horizontal, 16)
+            
+                .font(.custom("KonkhmerSleokchher-Regular", size: 16))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 16)
+                .background {
+                    Color(red: 214/255, green: 220/255, blue: 255/255)
+                        .cornerRadius(20)
+                }
+                .padding(.horizontal, 16)
+        }
+    }
+}

@@ -9,24 +9,24 @@ import SwiftUI
 
 struct TranslatorView: View {
     
-    @StateObject var speechRecognizer = SpeechRecognizer()
-    @State private var showResultView = false
-    
     enum Animals {
         case cat
         case dog
     }
     
+    
     @State var sourceLanguage = "HUMAN"
     @State var sourceLanguage2 = "PET"
     @State var humanToPet = true
-    @State private var selectedAnimal: Animals = .cat
     @State var showAlert = false
+    @State private var showResultView = false
+    @State private var selectedAnimal: Animals = .cat
     @State private var isRecording = false
+    @StateObject var speechRecognizer = SpeechRecognizer()
     
     var body: some View {
-         
             VStack {
+                
                 // TRANSLATOR TEXT
                 HStack {
                     Text("Translator")

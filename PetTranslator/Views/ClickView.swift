@@ -6,8 +6,18 @@
 //
 
 import SwiftUI
+import StoreKit
+
+enum Destination {
+    case rateUs, shareApp, contactUs, restorePurchases, privacyPolicy, termsOfUse
+}
+
 
 struct ClickView: View {
+    @Environment(\.requestReview) private var requestReview
+    @State private var destination: Destination?
+    @State private var showContactSheet = false
+    @State var showAlert = false
     var body: some View {
         ZStack {
             AppBackground()
@@ -23,162 +33,79 @@ struct ClickView: View {
                 .padding(.top, 12)
                 .padding(.bottom, 12)
                 
-                
                 VStack(spacing: 16) {
-                    
                     // BUTTON RATE US
-                    Button {
-                        // OPENING NEXT PAGE
-                    } label: {
-                        HStack {
-                            Text("Rate Us")
-                            Spacer()
-                            Image("arrow-right")
-                                .frame(width: 24, height: 24)
-                        }
-                        .padding(.horizontal, 16)
-                        
-                            .font(.custom("KonkhmerSleokchher-Regular", size: 16))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background {
-                                Color(red: 214/255, green: 220/255, blue: 255/255)
-                                    .cornerRadius(20)
-                            }
-                            .padding(.horizontal, 16)
-                    }
-                    .buttonStyle(.plain)
+                    ButtonClickView(name: "Rate Us", action: {
+                        requestReview()
+                    })
                     
                     // BUTTON SHARE APP
-                    Button {
-                        // OPENING NEXT PAGE
-                    } label: {
-                        HStack {
-                            Text("Share App")
-                            Spacer()
-                            Image("arrow-right")
-                                .frame(width: 24, height: 24)
-                        }
-                        .padding(.horizontal, 16)
-                        
-                            .font(.custom("KonkhmerSleokchher-Regular", size: 16))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background {
-                                Color(red: 214/255, green: 220/255, blue: 255/255)
-                                    .cornerRadius(20)
-                            }
-                            .padding(.horizontal, 16)
-                    }
-                    .buttonStyle(.plain)
+                    ButtonClickView(name: "Share App", action: {
+                        shareApp()
+                    })
                     
                     // BUTTON CONTACT US
-                    Button {
-                        // OPENING NEXT PAGE
-                    } label: {
-                        HStack {
-                            Text("Contact Us")
-                            Spacer()
-                            Image("arrow-right")
-                                .frame(width: 24, height: 24)
-                        }
-                        .padding(.horizontal, 16)
-                        
-                            .font(.custom("KonkhmerSleokchher-Regular", size: 16))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background {
-                                Color(red: 214/255, green: 220/255, blue: 255/255)
-                                    .cornerRadius(20)
+                    ButtonClickView(name: "Contact Us", action: {
+                        showContactSheet = true
+                    })
+                    .confirmationDialog("Contact Us", isPresented: $showContactSheet, titleVisibility: .visible) {
+                                Button("Call 📞") {
+                                    callSupport()
+                                }
+                                Button("Email ✉️") {
+                                    sendEmail()
+                                }
+                                Button("Cancel", role: .cancel) {}
                             }
-                            .padding(.horizontal, 16)
-                    }
-                    .buttonStyle(.plain)
                     
                     // BUTTON RESTORE PURCHASES
-                    
-                    Button {
-                        // OPENING NEXT PAGE
-                    } label: {
-                        HStack {
-                            Text("Restore Purchases")
-                            Spacer()
-                            Image("arrow-right")
-                                .frame(width: 24, height: 24)
-                        }
-                        .padding(.horizontal, 16)
-                        
-                            .font(.custom("KonkhmerSleokchher-Regular", size: 16))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background {
-                                Color(red: 214/255, green: 220/255, blue: 255/255)
-                                    .cornerRadius(20)
-                            }
-                            .padding(.horizontal, 16)
-                    }
-                    .buttonStyle(.plain)
+                    ButtonClickView(name: "Restore Purchases", action: {
+                        showAlert = true
+                    })
                     
                     // BUTTON PRIVACY POLICY
-                    Button {
-                        // OPENING NEXT PAGE
-                    } label: {
-                        HStack {
-                            Text("Privacy Policy")
-                            Spacer()
-                            Image("arrow-right")
-                                .frame(width: 24, height: 24)
-                        }
-                        .padding(.horizontal, 16)
-                        
-                            .font(.custom("KonkhmerSleokchher-Regular", size: 16))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background {
-                                Color(red: 214/255, green: 220/255, blue: 255/255)
-                                    .cornerRadius(20)
-                            }
-                            .padding(.horizontal, 16)
-                    }
-                    .buttonStyle(.plain)
+                    ButtonClickView(name: "Privacy Policy", action: {
+                        showAlert = true
+                    })
                     
                     // BUTTON TERMS OF USE
-                    Button {
-                        // OPENING NEXT PAGE
-                    } label: {
-                        HStack {
-                            Text("Terms of Use")
-                            Spacer()
-                            Image("arrow-right")
-                                .frame(width: 24, height: 24)
-                        }
-                        .padding(.horizontal, 16)
-                        
-                            .font(.custom("KonkhmerSleokchher-Regular", size: 16))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background {
-                                Color(red: 214/255, green: 220/255, blue: 255/255)
-                                    .cornerRadius(20)
-                            }
-                            .padding(.horizontal, 16)
-                    }
-                    .buttonStyle(.plain)
-                    
-                    
+                    ButtonClickView(name: "Terms of Use", action: {
+                        showAlert = true
+                    })
                 }
-                
-                
-                
+                .buttonStyle(.plain)
                 
                 Spacer()
+                
+            }
+            .alert("This feature will be provided in the future", isPresented: $showAlert) {
+                        Button("OK", role: .cancel) { }
+                    }
+        }
+        
+    }
+    private func shareApp() {
+            let urlString = "https://apps.apple.com/app/id76767667"
+            if let url = URL(string: urlString) {
+                UIApplication.shared.open(url)
+            }
+        }
+    
+    private func callSupport() {
+            if let url = URL(string: "tel://+00000000000") {
+                UIApplication.shared.open(url)
+            }
+        }
+    private func sendEmail() {
+            if let url = URL(string: "mailto:petSupportApp@pets.com") {
+                UIApplication.shared.open(url)
             }
         }
         
         
-        
-    }
 }
+
+
 
 #Preview {
     ClickView()

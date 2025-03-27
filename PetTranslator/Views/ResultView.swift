@@ -89,7 +89,6 @@ struct ResultView: View {
                                         Image("dog")
                                     }
                                 }
-                                
                             } else {
                                 VStack {
                                     Text("Woof woof woof")
