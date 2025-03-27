@@ -19,13 +19,16 @@ struct MainPageView: View {
     @State var selectedTab: Tabs = .translator
     
     var body: some View {
-            ZStack(alignment: .bottom) {
-                // CHOOSING WINDOW TO OPEN
+        NavigationStack {
+        ZStack(alignment: .bottom) {
+            // CHOOSING WINDOW TO OPEN
+            
+            
                 if selectedTab == .translator {
                     TranslatorView()
-                    .padding(.top, 12)
-                    .padding(.horizontal, 16)
-                } else {
+                        .padding(.top, 12)
+                        .padding(.horizontal, 16)
+                } else if selectedTab == .click {
                     ClickView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
@@ -76,11 +79,15 @@ struct MainPageView: View {
                 .frame(width: 216, alignment: .center)
                 .background(Color.white)
                 .cornerRadius(16)
-            }
-            .background {
-                AppBackground()
-                    .ignoresSafeArea()
-            }
+                
+        }
+        .background {
+            AppBackground()
+                .ignoresSafeArea()
+        }
+    
+    
+    }
         
         
         
