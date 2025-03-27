@@ -22,6 +22,7 @@ struct TranslatorView: View {
     @State private var showResultView = false
     @State private var selectedAnimal: Animals = .cat
     @State private var isRecording = false
+    @State private var waveAmplitudes: [CGFloat] = Array(repeating: 10, count: 10)
     @StateObject var speechRecognizer = SpeechRecognizer()
     
     var body: some View {
@@ -72,6 +73,7 @@ struct TranslatorView: View {
                         Button {
                             if isRecording == false {
                                 speechRecognizer.startRecognition()
+                                
                             } else {
                                 speechRecognizer.stopRecognition()
                                 showAlert = true
@@ -81,9 +83,14 @@ struct TranslatorView: View {
                             }
                         } label: {
                             VStack {
-                                Image("microphone")
-                                    .padding(.top, 44)
-                                    .scaleEffect(isRecording ? 1.2 : 1.0)
+                                if isRecording == false {
+                                    Image("microphone")
+                                        .padding(.top, 44)
+                                        .scaleEffect(isRecording ? 1.2 : 1.0)
+                                } else {
+                                    
+                                    
+                                }
                                 
                                 Text(isRecording ?  "Stop Speak " : "Start Speak")
                                     .font(.custom("KonkhmerSleokchher-Regular", size: 16))
@@ -102,7 +109,7 @@ struct TranslatorView: View {
                             
                             
                         }
-                        .opacity(isRecording ? 0.5 : 1.0)
+                        .opacity(isRecording ? 0.7 : 1.0)
                         
                     }
                     .onAppear {
@@ -163,6 +170,7 @@ struct TranslatorView: View {
                         .frame(width: 184, height: 184)
                 }
                 
+                AudioWaveView(isRecording: $isRecording)
                 
                 // PUSHING EVERYTHING UP
                 Spacer()
