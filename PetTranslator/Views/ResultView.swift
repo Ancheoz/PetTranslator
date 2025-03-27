@@ -118,7 +118,7 @@ struct ResultView: View {
                         VStack {
                             VStack {
                                 Text("Your cat says:")
-                                    .font(.custom("KonkhmerSleokchher-Regular", size: 8))
+                                    .font(.custom("KonkhmerSleokchher-Regular", size: 16))
                                     .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
                                 
                                 Text(catPhrases.randomElement() ?? "Meow meow...")
@@ -153,7 +153,7 @@ struct ResultView: View {
                         VStack {
                             VStack {
                                 Text("Your dog says:")
-                                    .font(.custom("KonkhmerSleokchher-Regular", size: 8))
+                                    .font(.custom("KonkhmerSleokchher-Regular", size: 16))
                                     .foregroundColor(Color(red: 41/255, green: 45/255, blue: 50/255))
                                 
                                 Text(dogPhrases.randomElement() ?? "Woof woof")
