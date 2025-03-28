@@ -11,3 +11,7 @@
 # IMPORTANT NOTES
 
 - Voice recognition works only with ENGLISH language!
+
+# TESTFLIGHT LINK
+
+- you can test this app by TestFlight, link: https://testflight.apple.com/join/U9gWJvz5
